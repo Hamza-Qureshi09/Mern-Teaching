@@ -9,6 +9,9 @@ export default {
         Montserrat: ["Montserrat", "sans-serif"],
         Nunito: ["Nunito", "sans-serif"],
       },
+      screens: {
+        large: "1200px",
+      },
     },
   },
   plugins: [],

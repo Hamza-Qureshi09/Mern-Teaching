@@ -5,11 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
     <style>
-        section{
+        section {
             height: 100vh;
             background-color: red;
+        }
+        nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            background-color: rgb(208, 208, 208);
+            padding: 0px 10px;
+        }
+        .menu{
+            display: none;
+        }
+        nav>ul{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        /* media query */
+        @media (max-width:800px) {
+            section{
+                background-color: green;
+            }
+            nav{
+                flex-direction: row;
+                position: relative;
+                padding: 0px;
+            }
+            .logo{
+                margin-left: 10px;
+            }
+            .menu{
+                display: block;
+                margin-right: 10px;
+                cursor: pointer;
+            }
+            nav>ul{
+                position: absolute;
+                top: 100%;
+                flex-direction: column;
+                width: 100%;
+                background-color: black;
+                color: white;
+            }
+            /* absolute is dependent on relative (if you apply relaive) */
         }
     </style>
 </head>
@@ -22,7 +69,29 @@
 viewports=> vh, vw (responsive) -->
 
 <body>
-    <h1 class="text-[30px] font-semibold text-center text-opacity-30 bg-gradient-to-tl from-orange-600 to-rose-500 via-gray-600 tracking-tighter ">hello hamza</h1>
+    <!-- <h1 class="text-[30px] font-semibold text-center text-opacity-30 bg-gradient-to-tl from-orange-600 to-rose-500 via-gray-600 tracking-tighter ">hello hamza</h1> -->
+
+    <section>
+        <nav> 
+            <div class="logo">HQ</div>
+            <i class="fa-solid fa-bars menu"></i>
+            <ul>
+                <li><a href="#">
+                        Home
+                    </a></li>
+                <li><a href="#">
+                        About
+                    </a></li>
+                <li><a href="#">
+                        Contact
+                    </a></li>
+            </ul>
+        </nav>
+
+        <!-- row=>justify-content=horizontally , align-items=vertically
+        column=>justify-content=vertically , align-items=horizontally
+        -->
+    </section>
 </body>
 
 </html>
