@@ -9,8 +9,9 @@ const Navbar = () => {
   const handleToggle = () => {
     settogglemenu(!togglemenu);
   };
+  console.log(togglemenu);
   return (
-    <header>
+    <header className="z-[999]">
       <nav className="bg-gray-50 border-gray-200 h-[70px]">
         <div className=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
           <NavLink
@@ -27,19 +28,17 @@ const Navbar = () => {
           {/*menu is here */}
           <IoMenu
             onClick={handleToggle}
-            className="text-white text-2xl cursor-pointer md:hidden"
+            className="text-gray-800 text-2xl cursor-pointer md:hidden"
           />
 
           <div
-            className={`${
-              togglemenu ? "hidden" : ""
-            } w-full md:w-max md:block md:w-auto" id="navbar-default`}
+            className={`${togglemenu ? "hidden" : ""} w-full md:block md:w-auto z-[999] `}
           >
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  ">
+            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-white md:bg-transparent md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  ">
               <li>
                 <NavLink
                   to="/home"
-                  className="block py-2 px-3 bg-blue-700 rounded md:bg-transparent text-gray-900 md:hover:text-blue-700 md:p-0 font-Nunito"
+                  className="block py-2 px-3 hover:bg-gray-100 rounded md:bg-transparent text-gray-900  md:p-0 font-Nunito"
                   aria-current="page"
                 >
                   Home
