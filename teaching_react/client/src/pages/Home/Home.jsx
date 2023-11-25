@@ -2,24 +2,43 @@ import React from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 const Home = () => {
-  const [imageIndex, setimageIndex] = React.useState(0)
-  const Images = ["/images/signin_signup.jpg", "/images/logo.png", "/images/image3.jpg"];
+  const [imageIndex, setimageIndex] = React.useState(0);
+  const [fetchedTodos, setfetchedTodos] = React.useState([]);
+  const Images = [
+    "/images/signin_signup.jpg",
+    "/images/logo.png",
+    "/images/image3.jpg",
+  ];
 
   const leftImage = () => {
     if (imageIndex === 0) {
-      setimageIndex(Images.length - 1)
+      setimageIndex(Images.length - 1);
     } else {
-      setimageIndex(imageIndex - 1)
+      setimageIndex(imageIndex - 1);
     }
-  }
+  };
   const rightImage = () => {
-    let imagesLength = Images.length
+    let imagesLength = Images.length;
     if (imagesLength === imageIndex + 1) {
-      setimageIndex(0)
+      setimageIndex(0);
     } else {
-      setimageIndex(imageIndex + 1)
+      setimageIndex(imageIndex + 1);
     }
-  }
+  };
+
+  // side effect => useEffect
+  React.useEffect(() => {
+    console.log("load videos");
+    const fetchTodos = async () => {
+      const fetchTodos = await fetch(
+        "https://jsonplaceholder.typicode.com/todos"
+      );
+      console.log(await fetchTodos.json());
+    };
+
+    fetchTodos();
+  }, []);
+
   return (
     <div>
       {/* slider */}
@@ -33,8 +52,18 @@ const Home = () => {
             );
           }
         })}
-        <span onClick={leftImage} className="absolute top-1/2 h-6 w-6 rounded-full bg-gray-200 flex flex-col justify-center items-center cursor-pointer left-4 hover:scale-105 transition-all duration-200"><FaAngleLeft /></span>
-        <span onClick={rightImage} className="absolute top-1/2 h-6 w-6 rounded-full bg-gray-200 flex flex-col justify-center items-center cursor-pointer right-4 hover:scale-105 transition-all duration-200"><FaAngleRight /></span>
+        <span
+          onClick={leftImage}
+          className="absolute top-1/2 h-6 w-6 rounded-full bg-gray-200 flex flex-col justify-center items-center cursor-pointer left-4 hover:scale-105 transition-all duration-200"
+        >
+          <FaAngleLeft />
+        </span>
+        <span
+          onClick={rightImage}
+          className="absolute top-1/2 h-6 w-6 rounded-full bg-gray-200 flex flex-col justify-center items-center cursor-pointer right-4 hover:scale-105 transition-all duration-200"
+        >
+          <FaAngleRight />
+        </span>
       </div>
     </div>
   );

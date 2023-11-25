@@ -7,7 +7,7 @@ const Port = process.env.PORT || 5002
 require('./db/conn')
 
 // middleware
-app.use(express.json())
+app.use(express.json()) 
 app.use(express.urlencoded({ extended: true }))
 
 // Routes
