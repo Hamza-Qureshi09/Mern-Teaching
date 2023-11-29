@@ -29,4 +29,11 @@ const UserRegistration = async (req, res) => {
   }
 };
 
-module.exports = { UserRegistration };
+// Method @GET
+const AllUsers = async (req, res) => {
+  const { name } = req.query;
+  // reading
+  const users = await userModal.find({ name: name }); //array
+  res.status(200).json({ users });
+};
+module.exports = { UserRegistration, AllUsers };
