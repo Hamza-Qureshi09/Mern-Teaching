@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema(
           "Password should be 8 charachters long and should contain at least one uppercase one lowercase and one digit!",
       },
     },
+    userAccessToken: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 );
