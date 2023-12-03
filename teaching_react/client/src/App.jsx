@@ -15,7 +15,7 @@ function App() {
   const href = useHref();
   const auth = {
     activation: true, //register
-    login: false, //login =>false
+    login: true, //login =>false
   };
   return (
     <>

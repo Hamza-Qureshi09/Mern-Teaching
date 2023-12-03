@@ -11,6 +11,25 @@
   box-sizing: border-box;
 }
 
-.active{
+.active {
   color: rgb(5, 147, 255);
+}
+
+.imageAnimation {
+  animation: imageFadding 1s ease-in-out 1;
+}
+
+/* fade animation */
+@keyframes imageFadding {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 50;
+  }
+
+  100% {
+    opacity: 100;
+  }
 }
