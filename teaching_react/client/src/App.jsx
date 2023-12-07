@@ -10,6 +10,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Navbar from "./components/Navbar/Navbar";
 import { useHref } from "react-router-dom";
+import FormHandling from "./pages/FormHandling/FormHandling";
 
 function App() {
   const href = useHref();
@@ -21,7 +22,7 @@ function App() {
     <>
       <main className="bg-white  m-0 p-0">
         {/* navigation */}
-        {href === "/login" || href === "/register" ? "" : <Navbar />}
+        {/* {href === "/login" || href === "/register" ? "" : <Navbar />} */}
 
         {/* pages */}
         <Routes>
@@ -30,6 +31,7 @@ function App() {
             <Route path="settings" element={<Settings />} />
           </Route>
           <Route path="/home" element={<Home />} />
+          <Route path="/formhandling" element={<FormHandling />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<About />} />
