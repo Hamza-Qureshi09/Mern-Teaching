@@ -79,6 +79,7 @@ const UserLogin = async (req, res) => {
 
 // Method @GET
 const AllUsers = async (req, res) => {
+  const User = req.verifyUser;
   const { name } = req.query;
   // reading
   const users = await userModal.find({ name: name }); //array

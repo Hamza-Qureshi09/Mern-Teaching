@@ -11,6 +11,7 @@ import Register from "./pages/Register/Register";
 import Navbar from "./components/Navbar/Navbar";
 import { useHref } from "react-router-dom";
 import FormHandling from "./pages/FormHandling/FormHandling";
+import Weather from "./pages/Weather/Weather";
 
 function App() {
   const href = useHref();
@@ -30,6 +31,7 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+          <Route path="/weather" element={<Weather />} />
           <Route path="/home" element={<Home />} />
           <Route path="/formhandling" element={<FormHandling />} />
           <Route path="/login" element={<Login />} />

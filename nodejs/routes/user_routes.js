@@ -5,14 +5,20 @@ const {
   UserLogin,
   AllUsers,
 } = require("../controllers/user_controller");
+const userModal = require("../models/usermodal");
 
 // middleware (req (middleware) => res)
-const verifyUserName = (req, res, next) => {
-  console.log("middleware running");
-  const { name } = req.query;
-  if (!name) {
-    return res.status(400).json({ msg: "invalid query" });
+const verifyUserAccessToken = async (req, res, next) => {
+  const { access } = req.cookies;
+  if (!access) {
+    return res.status(401).json({ msg: "Unauthorized person!" });
   }
+  // verification of token
+  const findUser = await userModal.findOne({ userAccessToken: access });
+  if (!findUser) {
+    return res.status(404).json({ msg: "User not found!" });
+  }
+  req.verifyUser = findUser;
   next();
 };
 
@@ -22,6 +28,6 @@ router
   .post("/login", UserLogin) //fields validation check and user existence checks
   .get("/verifyMe")
   .get("/logout")
-  .get("/readuser", verifyUserName, AllUsers);
+  .get("/readuser", verifyUserAccessToken, AllUsers);
 
 module.exports = router;
