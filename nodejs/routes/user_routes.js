@@ -5,22 +5,7 @@ const {
   UserLogin,
   AllUsers,
 } = require("../controllers/user_controller");
-const userModal = require("../models/usermodal");
-
-// middleware (req (middleware) => res)
-const verifyUserAccessToken = async (req, res, next) => {
-  const { access } = req.cookies;
-  if (!access) {
-    return res.status(401).json({ msg: "Unauthorized person!" });
-  }
-  // verification of token
-  const findUser = await userModal.findOne({ userAccessToken: access });
-  if (!findUser) {
-    return res.status(404).json({ msg: "User not found!" });
-  }
-  req.verifyUser = findUser;
-  next();
-};
+const { verifyUserAccessToken } = require("../middleware/verifyUserAccessToken");
 
 // Routes for user Auth
 router

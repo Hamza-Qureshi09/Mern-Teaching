@@ -1,20 +1,31 @@
 const userModal = require("../models/usermodal");
 const crypto = require("crypto");
+const ErrorHandler = require("../service/ErrorHandler");
 
 // Method @POST
-const UserRegistration = async (req, res) => {
+const UserRegistration = async (req, res, next) => {
   try {
     // destructure
     const { name, email, password, confirmPassword } = req.body;
 
     //   1. not empty
     if (!name || !email || !password || !confirmPassword) {
-      res.status(406).json({ msg: "incomplet information!" });
+      return next(
+        new ErrorHandler({
+          message: "incomplet information!",
+          status: 406,
+        })
+      );
     }
 
     //   2. pass & confirm pass should match
     if (password !== confirmPassword) {
-      res.status(400).json({ msg: "incorrect password" });
+      return next(
+        new ErrorHandler({
+          message: "incorrect password",
+          status: 400,
+        })
+      );
     }
 
     //   user creation
@@ -25,12 +36,12 @@ const UserRegistration = async (req, res) => {
     }).save();
     return res.status(201).json({ success: true, user: newUser });
   } catch (error) {
-    return res.status(400).json({ success: false, error: error.message });
+    return next(new ErrorHandler({ message: error.message, status: 400 }));
   }
 };
 
 // Method @POST
-const UserLogin = async (req, res) => {
+const UserLogin = async (req, res, next) => {
   try {
     // destructure
     const { email, password } = req.body;
@@ -38,12 +49,16 @@ const UserLogin = async (req, res) => {
     //   1.user existience
     const userExist = await userModal.findOne({ email });
     if (!userExist) {
-      return res.status(404).json({ msg: "user not exist!" });
+      return next(
+        new ErrorHandler({ message: "user not exist!", status: 404 })
+      );
     }
 
     //   2. pass matching
     if (password !== userExist.password) {
-      return res.status(400).json({ msg: "incorrect password" });
+      return next(
+        new ErrorHandler({ message: "incorrect password", status: 400 })
+      );
     }
 
     // credientials
@@ -73,7 +88,7 @@ const UserLogin = async (req, res) => {
 
     return res.status(200).json({ success: true, user: newUserRec });
   } catch (error) {
-    return res.status(400).json({ success: false, error: error.message });
+    return next(new ErrorHandler({ message: error.message, status: 400 }));
   }
 };
 
