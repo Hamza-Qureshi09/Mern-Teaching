@@ -1,5 +1,6 @@
 const userModal = require("../models/usermodal");
 const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 const ErrorHandler = require("../service/ErrorHandler");
 
 // Method @POST
@@ -62,10 +63,18 @@ const UserLogin = async (req, res, next) => {
     }
 
     // credientials
-    const token = crypto
-      .createHmac("sha256", "hellomynameishamza")
-      .update(userExist._id.toString())
-      .digest("hex");
+    // const token = crypto
+    //   .createHmac("sha256", "hellomynameishamza")
+    //   .update(userExist._id.toString())
+    //   .digest("hex");
+
+    // jwt token
+    const token = jwt.sign({ userId: userExist?._id }, process.env.JWT_SECRET, {
+      algorithm: "HS384",
+      audience: "user",
+      expiresIn: "2m",
+      issuer: "server",
+    });
 
     // create cookie
     res.cookie("access", token, {

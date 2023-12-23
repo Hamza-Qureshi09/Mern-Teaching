@@ -1,8 +1,9 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
-const Port = process.env.PORT || 5002;
+const Port = process.env.PORT || 5004;
 
 // files
 const CustomErrorHandler = require("./service/captureErrors");
