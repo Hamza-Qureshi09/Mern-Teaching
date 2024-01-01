@@ -22,9 +22,6 @@ function App() {
   return (
     <>
       <main className="bg-white  m-0 p-0">
-        {/* navigation */}
-        {/* {href === "/login" || href === "/register" ? "" : <Navbar />} */}
-
         {/* pages */}
         <Routes>
           <Route path="/" element={<ProtectedRoutes auth={auth} />}>
