@@ -34,7 +34,7 @@ export default addToCart.reducer;
 
 
 // types for this slice
-export type Product = { id: string, name: string, price: number }
+export type Product = { id: number, name: string, price: number }
 export interface IAddToCartState {
   addtocartSlice: {
     toggleAddToCartSidebar: boolean,

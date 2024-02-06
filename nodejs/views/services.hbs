@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="service page for developers">
+    <meta name="keywords" content="services, Services, developers">
+    <title>services</title>
+</head>
+
+<body>
+    <h1>
+        Service Page
+    </h1>
+    <h3>Available services 👇</h3>
+    <ul>
+        {{#each services}}
+        <li>{{this.id}}-{{this.name}}</li>
+        {{/each}}
+    </ul>
+</body>
+
+</html>
