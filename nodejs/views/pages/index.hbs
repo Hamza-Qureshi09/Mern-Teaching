@@ -5,15 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="new tech in 2024">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>home page</title>
 </head>
 
 <body>
-    <h1>Welcome {{name}}</h1>
+    {{> navbar}}
+
+    {{#if name}} <h1>Welcome{{name}} </h1>{{/if}}
     <h2>hello this is home page</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium natus eligendi reprehenderit nobis. Cumque
         pariatur nostrum, quos nesciunt sed autem.</p>
-    <button>click me</button>
+    <button onclick="openModal()">click me</button>
+     {{> footer}}
+    <script src="../js/main.js"></script>
 </body>
 
 </html>

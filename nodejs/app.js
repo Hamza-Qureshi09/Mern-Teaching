@@ -10,17 +10,18 @@ app.use(express.static(path.join(__dirname, "./views")));
 
 // setting hbs engine
 app.set("view engine", "hbs");
+hbs.registerPartials(path.resolve(__dirname, "./views/partials"));
 
 app.get("^/$", (req, res) => {
-  return res.status(200).render("index", {
+  return res.status(200).render("pages/index", {
     name: "Hamza Qureshi",
   });
 });
 app.get("^/about$", (req, res) => {
-  return res.status(200).render("about");
+  return res.status(200).render("pages/about");
 });
 app.get("^/service$", (req, res) => {
-  return res.status(200).render("services", {
+  return res.status(200).render("pages/services", {
     services: [
       { id: 1, name: "development" },
       { id: 2, name: "designing" },

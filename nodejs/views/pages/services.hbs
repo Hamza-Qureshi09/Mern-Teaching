@@ -10,15 +10,28 @@
 </head>
 
 <body>
+    {{> navbar}}
+
     <h1>
         Service Page
     </h1>
     <h3>Available services 👇</h3>
+
+    {{#if services}}
     <ul>
         {{#each services}}
         <li>{{this.id}}-{{this.name}}</li>
         {{/each}}
     </ul>
+    {{else if projects}}
+    <p>this is else if part</p>
+    {{else}}
+    <p>sorry, services are not available</p>
+    {{/if}}
+
+    {{!-- footer --}}
+    {{> footer}}
+
 </body>
 
 </html>
