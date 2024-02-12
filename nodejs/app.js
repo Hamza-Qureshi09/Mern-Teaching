@@ -5,12 +5,18 @@ const hbs = require("hbs");
 const Port = 5002;
 const app = express();
 
+// all routes
+const AuthRoutes = require("./routes/auth_route");
+
 // static content
 app.use(express.static(path.join(__dirname, "./views")));
 
 // setting hbs engine
 app.set("view engine", "hbs");
 hbs.registerPartials(path.resolve(__dirname, "./views/partials"));
+
+// routes
+app.use("/api/v1", AuthRoutes);
 
 app.get("^/$", (req, res) => {
   return res.status(200).render("pages/index", {
